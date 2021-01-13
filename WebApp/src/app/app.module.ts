@@ -10,15 +10,25 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { Page404Component } from './page404/page404.component';
+import { PaisesComponent } from './paises/paises.component';
+import { PaisComponent } from './pais/pais.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    Page404Component,
+    PaisesComponent,
+    PaisComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +38,9 @@ import { RegistroComponent } from './registro/registro.component';
     AngularFirestoreModule,
     NgbModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,MatSnackBarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

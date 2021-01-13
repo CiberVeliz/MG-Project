@@ -14,17 +14,26 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginFB(): void{
-    /*var provider = new firebase.auth.FacebookAuthProvider();
-
-    firebase.auth().signInWithPopup(provider).then(result =>
+  facebookLogin(): void{
+    try
     {
-      console.log(result);
-    });*/
+      this.serviceAuth.facebookLogin();
+    }
+    catch(err)
+    {
+      console.log(err);
+    }
+  }
 
-    console.log('FB');
-
-    this.serviceAuth.facebookLogin();
+  googleLogin(): void{
+    try
+    {
+      this.serviceAuth.googleLogin();
+    }
+    catch(err)
+    {
+      //console.log(err);
+    }
   }
 
 }
