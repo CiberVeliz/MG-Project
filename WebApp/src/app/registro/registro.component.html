@@ -1,3 +1,65 @@
-<p>registro works!</p>
+<div class="container">
+    <h2>Registro mediante correo</h2>
+    <form (submit)="registrarUsuario()" [formGroup]="formRegistro" novalidate>
+        <div class="form-group">
+          <label for="emailInput">Correo Electrónico</label>
+          <input type="email" required class="form-control" id="emailInput" placeholder="Ingrese su correo" formControlName="mail">
+        </div>
+        
+        <div *ngIf="formRegistro.controls['mail'].invalid && (formRegistro.controls['mail'].dirty || formRegistro.controls['mail'].touched)" class="alert alert-danger">
+            <div *ngIf="formRegistro.controls['mail'].errors.required">
+                El correo es obligatorio
+            </div>
+            <div *ngIf="formRegistro.controls['mail'].errors.pattern">
+                Se debe de ingresar un correo válido
+            </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="passwordInput">Contraseña</label>
+          <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña" formControlName="password">
+        </div>
 
-<button class="btn btn-primary" (click)="registrarUsuario()">Registrarse</button>
+        <div *ngIf="formRegistro.controls['password'].invalid && (formRegistro.controls['password'].dirty || formRegistro.controls['password'].touched)" class="alert alert-danger">
+            <div *ngIf="formRegistro.controls['password'].errors.required">
+                La contraseña es obligatoria
+            </div>
+            <div *ngIf="formRegistro.controls['password'].errors.pattern">
+                Se debe de ingresar una contraseña que contenga al menos 6 caracteres
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPasswordInput">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirmar Contraseña" formControlName="confirmPassword">
+        </div>
+
+          <div *ngIf="formRegistro.controls['confirmPassword'].invalid && (formRegistro.controls['confirmPassword'].dirty || formRegistro.controls['confirmPassword'].touched)" class="alert alert-danger">
+            <div *ngIf="formRegistro.controls['confirmPassword'].errors.required">
+                Es obligatorio confirmar la contraseña
+            </div>
+        </div>
+        <div *ngIf="formRegistro.hasError('match')" class="alert alert-danger">
+            Las contraseñas deben coincidir
+        </div>
+
+        <button type="submit"
+            [disabled]="formRegistro.pristine || formRegistro.invalid" class="btn btn-primary btn-lg btn-block">
+            Registrarse
+        </button>
+    </form>
+
+    <hr>
+    <div class="container" style="text-align: center;">
+        <p class="form-text text-muted">Iniciar sesión con</p>
+
+        <a class="btn btn-social-icon btn-facebook" (click)="facebookLogin()">
+            <span class="fa fa-facebook"></span>
+        </a>
+
+        <a class="btn btn-social-icon btn-google" (click)="googleLogin()">
+            <span class="fa fa-google"></span>
+        </a>
+        
+    </div>
+</div>

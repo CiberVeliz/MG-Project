@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,9 +10,23 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private serviceAuth: AuthService) { }
+  constructor(private serviceAuth: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  formInicio = this.formBuilder.group(
+    {
+      mail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      password: ['', [Validators.required]]
+    }
+  );
+
+  iniciarSesion()
+  {
+    let values = this.formInicio.value;
+
+    this.serviceAuth.login(values.mail, values.password);
   }
 
   facebookLogin(): void{
@@ -21,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
     catch(err)
     {
-      console.log(err);
+      //console.log(err);
     }
   }
 

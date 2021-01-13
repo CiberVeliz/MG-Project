@@ -1,1 +1,42 @@
-<p>paises works!</p>
+<div class="container">
+    <h2>Listado de Países</h2>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Buscar país" name="filtro" [(ngModel)] = "filtroBusqueda">
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Capital</th>
+                    <th scope="col">Región</th>
+                    <th scope="col">Subregión</th>
+                    <th scope="col">Población</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pais of paises | pipes:filtroBusqueda; let i = index">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{pais.name}}</td>
+                    <td>{{pais.alpha3Code}}</td>
+                    <td>{{pais.capital}}</td>
+                    <td>{{pais.region}}</td>
+                    <td>{{pais.subregion}}</td>
+                    <td>{{pais.population}}</td>
+                    <td><a href="{{'pais?code=' + pais.alpha3Code}}" target="_blank">Detalles</a></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

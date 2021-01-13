@@ -1,4 +1,54 @@
-<p>LOGIN</p>
-<button class="btn btn-primary" (click)="facebookLogin()">Facebook</button>
 
-<button class="btn btn-primary" (click)="googleLogin()">Google</button>
+<div class="container">
+    <h2>Inicio mediante correo</h2>
+    <form (submit)="iniciarSesion()" [formGroup]="formInicio">
+        <div class="form-group">
+          <label for="emailInput">Correo Electrónico</label>
+          <input type="email" required class="form-control" id="emailInput" placeholder="Ingrese su correo" formControlName="mail">
+        </div>
+        
+        <div *ngIf="formInicio.controls['mail'].invalid && (formInicio.controls['mail'].dirty || formInicio.controls['mail'].touched)" class="alert alert-danger">
+            <div *ngIf="formInicio.controls['mail'].errors.required">
+                El correo es obligatorio
+            </div>
+            <div *ngIf="formInicio.controls['mail'].errors.pattern">
+                Se debe de ingresar un correo válido
+            </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="passwordInput">Contraseña</label>
+          <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña" formControlName="password">
+        </div>
+
+        <div *ngIf="formInicio.controls['password'].invalid && (formInicio.controls['password'].dirty || formInicio.controls['password'].touched)" class="alert alert-danger">
+            <div *ngIf="formInicio.controls['password'].errors.required">
+                La contraseña es obligatoria
+            </div>
+        </div>
+
+        <button type="submit"
+            [disabled]="formInicio.pristine || formInicio.invalid" class="btn btn-primary btn-lg btn-block">
+            Iniciar Sesión
+        </button>
+    </form>
+
+    <hr>
+    <div class="container" style="text-align: center;">
+        <p class="form-text text-muted">También puedes iniciar sesión con</p>
+
+        <a class="btn btn-social-icon btn-facebook" (click)="facebookLogin()">
+            <span class="fa fa-facebook"></span>
+        </a>
+
+        <a class="btn btn-social-icon btn-google" (click)="googleLogin()">
+            <span class="fa fa-google"></span>
+        </a>
+        
+    </div>
+
+</div>
+
+<!--<button class="btn btn-primary" (click)="facebookLogin()">Facebook</button>
+
+<button class="btn btn-primary" (click)="googleLogin()">Google</button>-->

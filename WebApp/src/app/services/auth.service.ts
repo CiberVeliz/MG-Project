@@ -11,22 +11,31 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 export class AuthService {
 
-  //public user:User;
+  constructor(public localAuth:AngularFireAuth, private snackBar: MatSnackBar, private router: Router) { }
 
-  constructor(public localAuth:AngularFireAuth, public snackBar: MatSnackBar, private router: Router) { }
-
-   showMessage(message: string, action: string) {
-      this.snackBar.open(message, action, {
+   showMessage(message: string) 
+   {
+      this.snackBar.open(message, void 0, {
          duration: 3000,
          panelClass: ['blue-snackbar']
-    });
-  }
+      });
+    }
 
   registrarUsuario(email: string, password: string)
   {
     return new Promise((resolve, reject) => {
       this.localAuth.createUserWithEmailAndPassword(email, password).then( userData => resolve(userData), err => reject(err));
     })
+  }
+
+  async login(mail, password)
+  { 
+    this.localAuth.signInWithEmailAndPassword(mail, password).then( result => {
+      this.router.navigate(['paises']);
+    })
+    .catch(err => {
+      this.showMessage('Error al iniciar sesión, revise sus credenciales.')
+    });
   }
 
   async googleLogin()
@@ -37,8 +46,7 @@ export class AuthService {
       this.router.navigate(['paises']);
     })
     .catch(err => {
-      console.log('Entro')
-      this.showMessage('No se pudo iniciar sesión con Google.', 'cerrar')
+      this.showMessage('No se pudo iniciar sesión con Google.')
       //console.log(err);
     });
   }
@@ -51,14 +59,13 @@ export class AuthService {
       this.router.navigate(['paises']);
     })
     .catch(err => {
-      console.log('Entro')
-      this.showMessage('No se pudo iniciar sesión con Facebook.', 'cerrar')
+      this.showMessage('No se pudo iniciar sesión con Facebook.')
       //console.log(err);
     });
   }
-  
-  register()
-  {
 
+  async logout()
+  {
+    this.localAuth.signOut();
   }
 }

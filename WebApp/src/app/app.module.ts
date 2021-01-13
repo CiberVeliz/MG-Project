@@ -21,6 +21,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatButtonModule } from '@angular/material/button';
 
+import { HttpClientModule } from '@angular/common/http';
+import { PipesPipe } from './pipes.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import { MatButtonModule } from '@angular/material/button';
     RegistroComponent,
     Page404Component,
     PaisesComponent,
-    PaisComponent
+    PaisComponent,
+    PipesPipe
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
