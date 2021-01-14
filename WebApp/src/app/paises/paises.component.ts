@@ -19,7 +19,6 @@ export class PaisesComponent implements OnInit {
     
     this.apiSerive.getCountries().subscribe(m => {
       this.paises = m;
-      console.log(this.paises);
     })
   }
 

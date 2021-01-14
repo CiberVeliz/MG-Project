@@ -19,6 +19,7 @@ export class PaisComponent implements OnInit {
 
       this.apiSerive.getCountry(code).subscribe(m => {
         this.pais = m;
+        console.log(this.pais);
       })
   });
   }

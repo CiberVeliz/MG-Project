@@ -31,6 +31,7 @@ export class AuthService {
   async login(mail, password)
   { 
     this.localAuth.signInWithEmailAndPassword(mail, password).then( result => {
+      localStorage.setItem("user", result.user.uid);
       this.router.navigate(['paises']);
     })
     .catch(err => {
@@ -43,6 +44,7 @@ export class AuthService {
     let provider = new firebase.auth.GoogleAuthProvider();
     
     this.localAuth.signInWithPopup(provider).then( result => {
+      localStorage.setItem("user", result.user.uid);
       this.router.navigate(['paises']);
     })
     .catch(err => {
@@ -56,6 +58,7 @@ export class AuthService {
     let provider = new firebase.auth.FacebookAuthProvider();
 
     this.localAuth.signInWithPopup(provider).then( result => {
+      localStorage.setItem("user", result.user.uid);
       this.router.navigate(['paises']);
     })
     .catch(err => {
@@ -64,8 +67,18 @@ export class AuthService {
     });
   }
 
+  userLogged()
+  {
+    let user_string = localStorage.getItem("user");
+
+    return !(user_string === null || user_string === undefined);
+  }
+
   async logout()
   {
+    localStorage.removeItem("user");
     this.localAuth.signOut();
+
+    this.router.navigate(['login']);
   }
 }
