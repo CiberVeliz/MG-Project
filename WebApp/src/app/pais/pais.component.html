@@ -1,0 +1,91 @@
+<div class="container" *ngIf="pais">
+    <div style="font-size: 25px;">
+        <a href="paises"><i class="fa fa-home"></i></a>
+    </div>
+
+    <h2>{{pais.name}}</h2>
+    <br>
+    <div class="container">
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Información general</strong><br>
+                    <div>
+                    <table class="table">
+                        <tbody>
+                            <tr>        
+                                <td>
+                                    <strong>Capital</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    {{pais.capital}}
+                                </td>
+                            </tr>
+                            <tr>        
+                                <td>
+                                    <strong>Alpha2Code</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    {{pais.alpha2Code}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Alpha3Code</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    {{pais.alpha3Code}}     
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Región</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    {{pais.region}}     
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Subregión</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    {{pais.subregion}}     
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Población</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    {{pais.population}}     
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Área (km2)</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    {{pais.area}}     
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;">
+                                    <strong>Fronteras</strong>
+                                </td>
+                                <td class="text-secondary">
+                                    <div class="list-group">
+                                        <div *ngFor="let temp of pais.borders">
+                                            <a href="{{'pais?code=' + temp}}" target="_blank" class="list-group-item list-group-item-action">{{temp}}</a>
+                                        </div>
+                                    </div>  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>     
+</div>
