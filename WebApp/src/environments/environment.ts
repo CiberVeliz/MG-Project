@@ -12,7 +12,9 @@ export const environment = {
     messagingSenderId: "697439915454",
     appId: "1:697439915454:web:913b65431e22e7fca93def",
     measurementId: "G-K2TMT2JW0H"
-  }
+  },
+  api_key: "4722d1a837msha0e27d80b3bfc7bp1d45f0jsn35bdc3d3d787",
+  api_host: "restcountries-v1.p.rapidapi.com"
 };
 
 /*
