@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class ApiService {
     let options = {
       headers: new HttpHeaders(
         {
-          'x-rapidapi-key': "4722d1a837msha0e27d80b3bfc7bp1d45f0jsn35bdc3d3d787",
-          'x-rapidapi-host': "restcountries-v1.p.rapidapi.com"
+          'x-rapidapi-key': environment.api_key,
+          'x-rapidapi-host': environment.api_host
         })
     }
 
@@ -30,8 +31,8 @@ export class ApiService {
     let options = {
       headers: new HttpHeaders(
         {
-          'x-rapidapi-key': "4722d1a837msha0e27d80b3bfc7bp1d45f0jsn35bdc3d3d787",
-          'x-rapidapi-host': "restcountries-v1.p.rapidapi.com"
+          'x-rapidapi-key': environment.api_key,
+          'x-rapidapi-host': environment.api_host
         })
     }
 
